@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const MemeGenerator = () => {
   const [topText, setTopText] = useState("");
   const [bottomText, setBottomText] = useState("");
-  const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg");
+  const [randomImg, setRandomImg] = useState("");
   const [allMemeImgs, setAllMemeImgs] = useState([]);
 
   useEffect(() => {
@@ -19,6 +19,13 @@ const MemeGenerator = () => {
     } else {
       setBottomText(value);
     }
+  };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    const item = allMemeImgs[Math.floor(Math.random() * allMemeImgs.length)];
+
+    setRandomImg(item.url);
   };
 
   return (
@@ -38,7 +45,7 @@ const MemeGenerator = () => {
           placeholder="bottom Text"
           onChange={handleChange}
         ></input>
-        <button>Gen</button>
+        <button onClick={handleClick}>Gen</button>
       </form>
       <div className="meme">
         <img src={randomImg} alt="" />
