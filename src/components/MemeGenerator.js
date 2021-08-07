@@ -40,6 +40,11 @@ const MemeGenerator = () => {
         ></input>
         <button>Gen</button>
       </form>
+      <div className="meme">
+        <img src={randomImg} alt="" />
+        <h2 className="top">{topText}</h2>
+        <h2 className="bottom">{bottomText}</h2>
+      </div>
     </div>
   );
 };
