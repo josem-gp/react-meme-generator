@@ -12,9 +12,34 @@ const MemeGenerator = () => {
       .then((data) => setAllMemeImgs(data.data.memes));
   }, []);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "topText") {
+      setTopText(value);
+    } else {
+      setBottomText(value);
+    }
+  };
+
   return (
     <div>
-      <p>Hi from MemeGenerator!</p>
+      <form className="meme-form">
+        <input
+          type="text"
+          name="topText"
+          value={topText}
+          placeholder="top Text"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="text"
+          name="bottomText"
+          value={bottomText}
+          placeholder="bottom Text"
+          onChange={handleChange}
+        ></input>
+        <button>Gen</button>
+      </form>
     </div>
   );
 };
