@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const MemeGenerator = () => {
   const [topText, setTopText] = useState("");
@@ -6,11 +6,13 @@ const MemeGenerator = () => {
   const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg");
   const [allMemeImgs, setAllMemeImgs] = useState([]);
 
-  useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes")
+  const callApi = () => {
+    const fetchData = fetch("https://api.imgflip.com/get_memes")
       .then((result) => result.json())
-      .then((data) => console.log(data));
-  }, []);
+      .then((data) => console.log(data.data.memes));
+
+    setAllMemeImgs(fetchData);
+  };
 
   return (
     <div>
